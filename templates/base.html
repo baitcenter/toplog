@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" >
+  <meta name="google-site-verification" content="kL7hC596rJki-gGYq1HGM6GjdYxrlUVXKJQ1NF6kNPE" />
+  {%- block head -%}
+  <title>Toplog |&nbsp;{%- block title -%} Home {%- endblock title -%}</title>
+  {%- block metaDescription -%}
+  <meta name="description" content="Aggregate great Books, Blog Posts, Articles, Discussions, Podcasts, Talks Video, Events, Tutorials, Courses, Jobs, etc. ">
+  {%- endblock metaDescription -%}
+  {%- endblock head -%}
+</head>
+<body>
+{%- block body -%}
+  <header class="header">
+  {%- block header -%}
+    <nav class="nav-menu">
+    {%- block nav -%}
+      <a href="/"><b class="logo">Toplog</b></a><sub class="logo-sub">.cc</sub><sup class="logo-sup">beta</sup>
+      <div class="right-menu">
+        <a href="/me/" id="login-link" rel="nofollow noopener"><b>Log in</b></a>
+        <div class="menudown" id="menu-down" style="display: none">
+          <button onclick="showMenu()" class="toolbtn">:::</button>
+          <div id="drop-menu" class="dropdown-content">
+            <li><a href="#" id="profile-link"><b>My Profile</b></a></li>
+          </div>
+        </div> 
+      </div>
+    {%- endblock nav -%}
+    </nav>
+  {%- endblock header -%}
+  </header>
+  <div class="banner">
+    {%- block banner -%}
+    <div class="banner-bar">
+      {%- let baseUrl = topic|set_baseurl -%}
+      {%- for t in tys -%}
+        {%- if t.trim() == ty.trim() -%}
+        <a class="ty-tab-active" href="{{ baseUrl }}{{ t }}">{{ t }}</a>
+        {%- else -%}
+        <a class="ty-tab" href="{{ baseUrl }}{{ t }}">{{ t }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if topic != "all" && topic != "from" -%}
+        <span class="topic-tab-active tab-{{ topic }}">{{ topic }}</span>
+      {%- endif -%}
+      <a onclick="openLink('/me/item/new?for={{ topic }}&to={{ ty }}')" 
+        href="javascript:void(0);" 
+        style="float:right"
+      >
+        <small class="help-tips">Suggest An Item...</small>
+      </a>
+    </div>
+    {%- endblock banner -%}
+  </div>
+  <div class="main-view">
+    {%- block mainview -%}{%- endblock mainview -%}
+  </div>
+  <footer class="footer">
+  {%- block foot -%}
+    <div class="bottom">
+      ©Toplog | <a href="/about.html">About</a> 
+      | <a href="https://github.com/Toplog-cc/toplog.cc/issues/new" title="Bug Report or Any Suggestion? We Appreciate!">Issues</a>
+      <!--google site search -->
+      <form id="Search" onsubmit="onSearch('q')" class="search-box">
+        <input type="text" id="q" placeholder=" Search ..." class="search-text"/>
+      </form>
+      <!--end google site search -->
+    </div>
+    <br>
+  {%- endblock foot -%}
+  </footer>
+{%- endblock body -%}
+<script src="/static/main.js"></script>
+{%- block script -%}{%- endblock script -%}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154003490-1"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-154003490-1');</script>
+</body>
+</html>
